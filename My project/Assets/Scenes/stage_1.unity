@@ -357,6 +357,7 @@ GameObject:
   - component: {fileID: 2040811548}
   - component: {fileID: 2040811551}
   - component: {fileID: 2040811552}
+  - component: {fileID: 2040811553}
   m_Layer: 0
   m_Name: "\u30AD\u30E3\u30E9"
   m_TagString: Untagged
@@ -457,7 +458,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &2040811552
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -713,3 +714,15 @@ PolygonCollider2D:
       - {x: 1.0899023, y: 4.2004104}
       - {x: 1.3470703, y: 4.224902}
   m_UseDelaunayMesh: 0
+--- !u!114 &2040811553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040811546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb307c8c40e90341b6d1c4f5c69cee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
