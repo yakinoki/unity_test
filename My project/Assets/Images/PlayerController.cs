@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rbody;
     float axisH = 0.0f;
-    public float speed = 2.0f;
+    public float speed = 3.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +18,16 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         axisH = Input.GetAxisRaw("Horizontal");
+        if (axisH > 0.0f)
+        {
+            Debug.Log("‰EˆÚ“®");
+            transform.localScale = new Vector2(1, 1);
+        }
+        else if (axisH < 0.0f)
+        {
+            Debug.Log("¶ˆÚ“®");
+            transform.localScale = new Vector2(-1, 1);
+        }
     }
 
     void FixedUpdate()
