@@ -8,6 +8,11 @@ public class PlayerController : MonoBehaviour
     float axisH = 0.0f;
     public float speed = 3.5f;
 
+    public float jump = 9.0f;
+    public LayerMask groundLayer;
+    bool goJump = false;
+    bool onGround = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,10 +33,21 @@ public class PlayerController : MonoBehaviour
             Debug.Log("左移動");
             transform.localScale = new Vector2(-1, 1);
         }
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            Jump();
+        }
     }
 
     void FixedUpdate()
     {
         rbody.velocity = new Vector2(axisH * 3.0f, rbody.velocity.y);
+    }
+
+    public void Jump()
+    {
+        goJump = true;
+        Debug.Log("ジャンプボタン押し!")
     }
 }
