@@ -43,14 +43,26 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         onGround = Physics2D.Linecast(transform.position,
-                transform.position - (transform.up * 0.1f),
-                groundLayer);
-        rbody.velocity = new Vector2(axisH * 3.0f, rbody.velocity.y);
+                                      transform.position - (transform.up * 0.1f),
+                                      groundLayer);   
+
+        if (onGround || axisH != 0)
+        {
+            rbody.velocity = new Vector2(speed * axisH, rbody.velocity.y);
+        }
+        if (onGround && goJump)
+        {
+            Debug.Log("ジャンプ");
+            Vector2 jumpPw = new Vector2(0, jump);
+            rbody.AddForce(jumpPw, ForceMode2D.Impulse);
+            goJump = false;
+        }
+        
     }
 
     public void Jump()
     {
         goJump = true;
-        Debug.Log("ジャンプボタン押し!")
+        Debug.Log("ジャンプボタン押し!");
     }
 }
