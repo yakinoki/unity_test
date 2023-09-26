@@ -23,17 +23,20 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         axisH = Input.GetAxisRaw("Horizontal");
+
+        // Check horizontal input for movement and update player direction.
         if (axisH > 0.0f)
         {
-            Debug.Log("右移動");
-            transform.localScale = new Vector2(1, 1);
+            Debug.Log("Moving right");
+            transform.localScale = new Vector2(1, 1); // Flip the player's sprite to face right.
         }
         else if (axisH < 0.0f)
         {
-            Debug.Log("左移動");
-            transform.localScale = new Vector2(-1, 1);
+            Debug.Log("Moving left");
+            transform.localScale = new Vector2(-1, 1); // Flip the player's sprite to face left.
         }
 
+        // Check for jump input.
         if (Input.GetButtonDown("Jump"))
         {
             Jump();
@@ -42,27 +45,31 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Check if the player is on the ground using a linecast.
         onGround = Physics2D.Linecast(transform.position,
                                       transform.position - (transform.up * 0.1f),
-                                      groundLayer);   
+                                      groundLayer);
 
+        // Apply horizontal movement when on the ground or in the air.
         if (onGround || axisH != 0)
         {
             rbody.velocity = new Vector2(speed * axisH, rbody.velocity.y);
         }
+
+        // Check for jumping conditions and apply an impulse force when ready.
         if (onGround && goJump)
         {
-            Debug.Log("ジャンプ");
+            Debug.Log("Jumping");
             Vector2 jumpPw = new Vector2(0, jump);
             rbody.AddForce(jumpPw, ForceMode2D.Impulse);
             goJump = false;
         }
-        
     }
 
+    // Call this method to initiate a jump.
     public void Jump()
     {
         goJump = true;
-        Debug.Log("ジャンプボタン押し!");
+        Debug.Log("Jump button pressed!");
     }
 }
