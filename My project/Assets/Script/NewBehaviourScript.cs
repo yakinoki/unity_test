@@ -21,9 +21,29 @@ public class NewBehaviourScript : MonoBehaviour
     {
         GameObject player =
             GameObject.FindGameObjectWithTag("Player");
-        if (player == null)
+        if (player != null)
         {
-
+            float x = player.transform.position.x;
+            float y = player.transform.position.y;
+            float z = player.transform.position.z;
+            if (x < leftLimit)
+            {
+                leftLimit = x;
+            }
+            else if (x > rightLimit)
+            {
+                rightLimit = x;
+            }
+            if (y < bottomLimit)
+            {
+                bottomLimit = y;
+            }
+            else if(y > topLimit)
+            {
+                topLimit = y;
+            }
+            Vector3 v3 = new Vector3(x, y, z);
+            transform.position = v3;
         }
     }
 }
